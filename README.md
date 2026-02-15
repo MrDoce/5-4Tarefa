@@ -29,11 +29,7 @@ Pra testar, só clicar no botão de teste na interface ou fazer um POST pra http
   "message": "mensagem",
   "type": "info"
 }
-```
 
-## Screenshots
-
-(adicionar depois)
 
 ## Reflexão Técnica
 
