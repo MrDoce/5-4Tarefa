@@ -29,12 +29,3 @@ Pra testar, só clicar no botão de teste na interface ou fazer um POST pra http
   "message": "mensagem",
   "type": "info"
 }
-
-
-## Reflexão Técnica
-
-A principal diferença entre WebSockets e HTTP é que HTTP é request-response, ou seja, o cliente sempre precisa pedir algo pro servidor. Com WebSockets você mantém uma conexão aberta e o servidor pode enviar dados proativamente sem o cliente precisar ficar fazendo requisições. Isso é essencial pra coisas em tempo real tipo chat, notificações, dashboards que atualizam sozinhos, etc. A latência também é menor porque não tem o overhead de criar uma nova conexão HTTP toda vez.
-
-Escalar aplicações WebSocket é mais complicado que HTTP porque cada conexão mantém estado no servidor. Se você tem vários servidores, um cliente conectado no servidor A não vai receber mensagens que foram enviadas pelo servidor B. Precisa usar algo tipo Redis Pub/Sub ou message brokers pra sincronizar entre as instâncias. Também tem que lidar com reconexões quando a rede cai ou o servidor reinicia.
-
-Socket.IO tem várias vantagens sobre WebSockets puros. Primeiro, ele faz fallback automático pra polling se WebSocket não funcionar, então funciona até em ambientes mais restritivos. Segundo, já vem com várias features prontas tipo rooms, namespaces, reconexão automática que você teria que implementar na mão com WebSockets puros. Terceiro, a API é mais simples e consistente. Quarto, tem acknowledgments, eventos customizados, compressão, etc. A comunidade também é grande e tem bastante documentação. A única desvantagem é um pouco mais de overhead comparado com WebSockets puros, mas pra maioria dos casos vale a pena pela facilidade.
